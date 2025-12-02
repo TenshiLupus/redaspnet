@@ -17,9 +17,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: mASO, policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
+        policy
+            .WithOrigins(
+                "http://localhost:4200",
+                "https://<your-netlify-site>.netlify.app" // replace later
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 builder.Services.AddAuthentication();
@@ -74,6 +78,12 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+}
+
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    app.Urls.Add($"http://0.0.0.0:{port}");
 }
 
 app.UseHttpsRedirection();
