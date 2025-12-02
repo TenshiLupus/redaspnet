@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var mASO = "_myAllowSpecificOrigins";
 
-// CORS
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: mASO, policy =>
@@ -35,7 +35,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
-// Auth / JWT
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -71,22 +71,22 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
-// Seed DB
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     SeedData.MigrateAndSeed(services);
 }
 
-// Dev-only extras
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
-    app.UseHttpsRedirection(); // dev only
+    app.UseHttpsRedirection(); 
 }
 
-// Bind to Render's port
+
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
