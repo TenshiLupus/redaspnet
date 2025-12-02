@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # copy csproj and restore as distinct layers
-COPY booksBackend.csproj .
+COPY BooksBackend.csproj .
 RUN dotnet restore
 
 # copy everything else and build
