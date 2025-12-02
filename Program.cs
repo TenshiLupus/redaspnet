@@ -17,15 +17,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: mASO, policy =>
     {
-        policy
-            .WithOrigins(
-                "http://localhost:4200",
-                "https://<your-netlify-site>.netlify.app" // replace later
-            )
+        policy.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
+
 builder.Services.AddAuthentication();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails();
@@ -78,15 +75,12 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+    app.UseHttpsRedirection(); // dev only
 }
 
-var port = Environment.GetEnvironmentVariable("PORT");
-if (!string.IsNullOrEmpty(port))
-{
-    app.Urls.Add($"http://0.0.0.0:{port}");
-}
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
-app.UseHttpsRedirection();
 app.UseCors(mASO);
 app.UseAuthentication();
 app.UseAuthorization();
