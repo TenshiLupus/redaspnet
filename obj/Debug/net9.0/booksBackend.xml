@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BooksBackend</name>
+    </assembly>
+    <members>
+        <member name="M:booksBackend.Controllers.UsersController.GetUserById(System.Int32)">
+            <summary>
+            Gets a book by ID.
+            </summary>
+            <param name="id">The ID of the book.</param>
+            <returns>The single book record.</returns>
+        </member>
+        <member name="M:booksBackend.Controllers.UsersController.CreateUser(booksBackend.Users.CreateUserRequest)">
+            <summary>
+            Creates a new book.
+            </summary>
+            <param name="userRequest">The book to be created.</param>
+            <returns>A link to the book that was created.</returns>
+        </member>
+        <member name="M:booksBackend.Controllers.UsersController.UpdateUser(System.Int32,booksBackend.Users.UpdateUserRequest)">
+            <summary>
+            Updates a book.
+            </summary>
+            <param name="id">The ID of the book to update.</param>
+            <param name="userRequest">The book data to update.</param>
+            <returns></returns>
+        </member>
+        <member name="T:booksBackend.Migrations.Init">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.Init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.Init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.Init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:booksBackend.Migrations.AddUniqueIndexToUsername">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.AddUniqueIndexToUsername.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.AddUniqueIndexToUsername.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.AddUniqueIndexToUsername.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:booksBackend.Migrations.SyncModel_20251130">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.SyncModel_20251130.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.SyncModel_20251130.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.SyncModel_20251130.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:booksBackend.Migrations.addedAuthorToQuote">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.addedAuthorToQuote.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.addedAuthorToQuote.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.addedAuthorToQuote.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
