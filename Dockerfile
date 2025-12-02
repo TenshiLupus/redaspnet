@@ -16,4 +16,4 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-CMD ["dotnet", "booksBackend.dll"]
+ENTRYPOINT ["dotnet", "booksBackend.dll"]
