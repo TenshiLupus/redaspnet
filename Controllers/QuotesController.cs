@@ -18,7 +18,7 @@ public class QuotesController : BaseController
         _dbContext = dbContext;
     }
 
-    // GET /Quotes?Page=1&RecordsPerPage=50&DescriptionContains=foo&UserId=1
+   
     [Authorize]
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Quote>), StatusCodes.Status200OK)]
@@ -50,7 +50,7 @@ public class QuotesController : BaseController
         return Ok(quotes);
     }
 
-    // GET /Quotes/{id}
+   
     [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
@@ -68,7 +68,7 @@ public class QuotesController : BaseController
         return Ok(existingQuote);
     }
 
-    // PUT /Quotes/{id}
+    
     [Authorize]
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
@@ -93,7 +93,6 @@ public class QuotesController : BaseController
         if (request.Author is not null)
             existingQuote.Author = request.Author;
 
-        // add any other updatable fields here
 
         try
         {
@@ -149,29 +148,29 @@ public class QuotesController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteRequest request)
     {
-        // 1. Get logged-in user id from the JWT claims
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier); // or your custom claim type
+  
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
-            return Forbid(); // token missing / invalid user id
+            return Forbid(); 
         }
 
-        // 2. Create the Quote itself
+      
         var newQuote = new Quote
         {
-            // adjust these properties to match your Quote model
+         
             Description = request.Description,
             Author = request.Author,
-            // any other fields you have (e.g. Source, Page, etc.)
+           
         };
 
         try
         {
             // add the quote to the context
             _dbContext.Quotes.Add(newQuote);
-            await _dbContext.SaveChangesAsync(); // so newQuote.Id is generated
+            await _dbContext.SaveChangesAsync(); 
 
-            // 3. Create the link row UserQuote -> associates user + quote
+            
             var userQuote = new UserQuote
             {
                 UserId = userId,
@@ -187,7 +186,7 @@ public class QuotesController : BaseController
                 userId
             );
 
-            // you can return a DTO instead of the entity if you prefer
+           
             return CreatedAtAction(nameof(GetQuoteById), new { id = newQuote.Id }, newQuote);
         }
         catch (Exception e)
