@@ -151,14 +151,14 @@ public class BooksController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateBook([FromBody] CreateBookRequest request)
     {
-        // 1. Get logged-in user id from the JWT claims
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier); // or your custom claim type
+       
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier); 
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
             return Forbid(); // token missing / invalid user id
         }
 
-        // 2. Create the Book itself
+        
         var newBook = new Book
         {
             Title = request.Title,
@@ -169,11 +169,11 @@ public class BooksController : BaseController
 
         try
         {
-            // add the book to the context
+            
             _dbContext.Books.Add(newBook);
-            await _dbContext.SaveChangesAsync(); // so newBook.Id is generated
+            await _dbContext.SaveChangesAsync(); 
 
-            // 3. Create the link row UserBook -> associates user + book
+            
             var userBook = new UserBook
             {
                 UserId = userId,
@@ -185,7 +185,7 @@ public class BooksController : BaseController
 
             _logger.LogInformation("Book with ID: {BookId} successfully created for user {UserId}", newBook.Id, userId);
 
-            // you can return the book, or some DTO if you prefer
+            
             return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
         }
         catch (Exception e)
