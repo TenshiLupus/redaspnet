@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: mASO, policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins("http://localhost:4200", "https://deft-souffle-6d9832.netlify.app")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
