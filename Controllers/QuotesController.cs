@@ -18,7 +18,7 @@ public class QuotesController : BaseController
         _dbContext = dbContext;
     }
 
-   
+
     [Authorize]
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Quote>), StatusCodes.Status200OK)]
@@ -50,7 +50,7 @@ public class QuotesController : BaseController
         return Ok(quotes);
     }
 
-   
+
     [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
@@ -68,13 +68,13 @@ public class QuotesController : BaseController
         return Ok(existingQuote);
     }
 
-    
+
     [Authorize]
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(Quote), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateQuote([FromRoute] int id, [FromBody] UpdateQuoteRequest request)
+    public async Task<IActionResult> UpdateQuote([FromRoute] int id, [FromBody] QuoteDto request)
     {
         _logger.LogInformation("Updating quote with ID: {QuoteId}", id);
 
@@ -92,6 +92,8 @@ public class QuotesController : BaseController
 
         if (request.Author is not null)
             existingQuote.Author = request.Author;
+
+        existingQuote.isFavorite = request.isFavorite;
 
 
         try
@@ -148,29 +150,30 @@ public class QuotesController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteRequest request)
     {
-  
+
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
-            return Forbid(); 
+            return Forbid();
         }
 
-      
+
         var newQuote = new Quote
         {
-         
+
             Description = request.Description,
             Author = request.Author,
-           
+            isFavorite = false,
+
         };
 
         try
         {
             // add the quote to the context
             _dbContext.Quotes.Add(newQuote);
-            await _dbContext.SaveChangesAsync(); 
+            await _dbContext.SaveChangesAsync();
 
-            
+
             var userQuote = new UserQuote
             {
                 UserId = userId,
@@ -186,7 +189,7 @@ public class QuotesController : BaseController
                 userId
             );
 
-           
+
             return CreatedAtAction(nameof(GetQuoteById), new { id = newQuote.Id }, newQuote);
         }
         catch (Exception e)
@@ -195,4 +198,65 @@ public class QuotesController : BaseController
             return StatusCode(500, "An error occurred while creating the quote");
         }
     }
+
+
+    [Authorize]
+    [HttpPatch("{id}/favorite")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> SetFavorite(
+        int id,
+        [FromBody] QuoteDto request)
+    {
+
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier) ?? User.FindFirst("nameid");
+        if (userIdClaim == null)
+        {
+            return Unauthorized();
+        }
+
+        var userId = int.Parse(userIdClaim.Value);
+
+
+        var user = await _dbContext.Users
+            .AsTracking()
+            .Include(u => u.Quotes)
+            .ThenInclude(uq => uq.Quote)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user == null)
+            return NotFound();
+
+        // find the quote for this user that will be checked agains the existing favorite quotes prior to updating it
+        var link = user.Quotes.FirstOrDefault(uq => uq.Quote.Id == id);
+        if (link == null || link.Quote == null)
+            return NotFound();
+
+        var quote = link.Quote;
+
+        //count checker
+        if (request.isFavorite && !quote.isFavorite)
+        {
+            var currentFavoriteCount = user.Quotes.Count(uq => uq.Quote.isFavorite);
+            if (currentFavoriteCount >= 5)
+            {
+                return BadRequest(new
+                {
+                    message = "You can only have up to 5 favorite quotes."
+                });
+            }
+        }
+
+
+        quote.isFavorite = request.isFavorite;
+        await _dbContext.SaveChangesAsync();
+
+        return Ok(new
+        {
+            id = quote.Id,
+            isFavorite = quote.isFavorite
+        });
+    }
 }
+

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BooksBackend</name>
+        <name>booksBackend</name>
     </assembly>
     <members>
         <member name="M:booksBackend.Controllers.UsersController.GetUserById(System.Int32)">
@@ -72,6 +72,18 @@
             <inheritdoc />
         </member>
         <member name="M:booksBackend.Migrations.addedAuthorToQuote.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:booksBackend.Migrations.quoteIsFavoriteAdded">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.quoteIsFavoriteAdded.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.quoteIsFavoriteAdded.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:booksBackend.Migrations.quoteIsFavoriteAdded.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

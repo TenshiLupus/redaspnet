@@ -9,9 +9,9 @@ namespace booksBackend.Controllers;
 
 public class BooksController : BaseController
 {
-    private readonly ILogger<UsersController> _logger;
+    private readonly ILogger<BooksController> _logger;
     private readonly AppDbContext _dbContext;
-    public BooksController(ILogger<UsersController> logger, AppDbContext dbContext)
+    public BooksController(ILogger<BooksController> logger, AppDbContext dbContext)
     {
         _logger = logger;
         this._dbContext = dbContext;
@@ -151,14 +151,14 @@ public class BooksController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateBook([FromBody] CreateBookRequest request)
     {
-       
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier); 
+
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
             return Forbid(); // token missing / invalid user id
         }
 
-        
+
         var newBook = new Book
         {
             Title = request.Title,
@@ -169,11 +169,11 @@ public class BooksController : BaseController
 
         try
         {
-            
-            _dbContext.Books.Add(newBook);
-            await _dbContext.SaveChangesAsync(); 
 
-            
+            _dbContext.Books.Add(newBook);
+            await _dbContext.SaveChangesAsync();
+
+
             var userBook = new UserBook
             {
                 UserId = userId,
@@ -185,7 +185,7 @@ public class BooksController : BaseController
 
             _logger.LogInformation("Book with ID: {BookId} successfully created for user {UserId}", newBook.Id, userId);
 
-            
+
             return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
         }
         catch (Exception e)

@@ -1,1 +1,12 @@
-{"Version":1,"Hash":"+WV4Ca/bD+xk0vQzbANAhD4UCselLdWrUGLj3qigLEc=","Source":"BooksBackend","BasePath":"_content/BooksBackend","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "IQkh3GGvuIEuITOMadVJ5It8CEN3gj4W+Txhp0Q+LEw=",
+  "Source": "booksBackend",
+  "BasePath": "_content/booksBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

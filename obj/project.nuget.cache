@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JkRqWdbhlps=",
+  "dgSpecHash": "hnAhY6mWD/s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\BooksBackend.csproj",
+  "projectFilePath": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\booksBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Angel\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Angel\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.11\\microsoft.aspnetcore.authentication.jwtbearer.9.0.11.nupkg.sha512",

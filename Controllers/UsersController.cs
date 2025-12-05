@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using booksBackend.Models;
 using booksBackend.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,6 @@ namespace booksBackend.Controllers
             int numberOfRecords = request?.RecordsPerPage ?? 100;
 
             IQueryable<User> query = _dbContext.Users
-
             .Skip((page - 1) * numberOfRecords)
             .Take(numberOfRecords);
 
@@ -42,11 +42,38 @@ namespace booksBackend.Controllers
 
             }
 
-            var users = await query.ToArrayAsync();
+            var users = await query.Select(u => new GetUsersWithQuotes
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Quotes = u.Quotes.Select(q => new QuoteDto
+                {
+                    Id = q.Id,
+                    Description = q.Quote.Description,
+                    Author = q.Quote.Author,
+                    isFavorite = q.Quote.isFavorite,
 
-            return Ok(users.Select(UserToUserResponse));
+                }).ToList()
+                ,
+                Books = u.Books.Select(b => new BookDto
+                {
+                    Id = b.Id,
+                    Title = b.Book.Title,
+                    Author = b.Book.Author,
+                    PublishedDate = b.Book.PublishedDate
+                }).ToList()
+
+            }).ToListAsync();
+
+
+
+            // .ToArrayAsync();
+
+
+            return Ok(users);
 
         }
+
         /// <summary>
         /// Gets a book by ID.
         /// </summary>
@@ -145,7 +172,7 @@ namespace booksBackend.Controllers
 
         [Authorize]
         [HttpGet("{userId}/quotes")]
-        [ProducesResponseType(typeof(IEnumerable<GetUserResponseUserBook>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<BookDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetQuotesForUser(int userId)
@@ -160,11 +187,12 @@ namespace booksBackend.Controllers
                 return NotFound();
             }
 
-            var books = user.Quotes.Select(q => new GetUserResponseUserQuote
+            var books = user.Quotes.Select(q => new QuoteDto
             {
                 Id = q.Id,
                 Description = q.Quote.Description,
-                Author = q.Quote.Author
+                Author = q.Quote.Author,
+                isFavorite = q.Quote.isFavorite
 
             });
 

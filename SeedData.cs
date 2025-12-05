@@ -9,7 +9,7 @@ public static class SeedData
     {
         var context = serviceProvider.GetRequiredService<AppDbContext>();
 
-       
+
         context.Database.Migrate();
 
         if (!context.Users.Any())
@@ -27,7 +27,7 @@ public static class SeedData
             context.SaveChanges();
         }
 
-       
+
         if (!context.Books.Any())
         {
             var b1 = new Book { Title = "Fall", Author = "Oryx", PublishedDate = DateTime.Now };
@@ -42,14 +42,14 @@ public static class SeedData
 
         if (!context.Quotes.Any())
         {
-            var q1 = new Quote { Description = "big team battle", Author = "Oryx" };
-            var q2 = new Quote { Description = "killimanjaro", Author = "Osiris" };
+            var q1 = new Quote { Description = "big team battle", Author = "Oryx", isFavorite = false };
+            var q2 = new Quote { Description = "killimanjaro", Author = "Osiris", isFavorite = false };
 
             context.Quotes.AddRange(q1, q2);
             context.SaveChanges();
         }
 
-    
+
         if (!context.UserBooks.Any())
         {
             var taniks = context.Users.Single(u => u.Username == "Taniks");
@@ -61,11 +61,11 @@ public static class SeedData
             var saint = context.Books.Single(b => b.Title == "Saint");
 
             context.UserBooks.AddRange(
-               
+
                 new UserBook { UserId = taniks.Id, BookId = fall.Id },
                 new UserBook { UserId = taniks.Id, BookId = curse.Id },
 
-            
+
                 new UserBook { UserId = zavala.Id, BookId = fel.Id },
                 new UserBook { UserId = zavala.Id, BookId = saint.Id }
             );
@@ -82,7 +82,7 @@ public static class SeedData
             var kila = context.Quotes.Single(q => q.Description == "killimanjaro");
 
             context.UserQuotes.AddRange(
-           
+
                 new UserQuote { UserId = taniks.Id, QuoteId = btb.Id },
                 new UserQuote { UserId = taniks.Id, QuoteId = kila.Id }
 

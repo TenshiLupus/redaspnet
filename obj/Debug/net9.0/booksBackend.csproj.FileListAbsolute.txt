@@ -154,7 +154,6 @@ C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBacken
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\booksBackend.pdb
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\booksBackend.genruntimeconfig.cache
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\ref\booksBackend.dll
-C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\BooksBac.FC3D8CD4.Up2Date
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Angel\Desktop\code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -170,3 +169,4 @@ C:\Users\Angel\Desktop\Code\RedRiver-Consulting-and-Software-AB-Test\booksBacken
 C:\Users\Angel\Desktop\Code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.BooksBackend.props
 C:\Users\Angel\Desktop\Code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.BooksBackend.props
 C:\Users\Angel\Desktop\Code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\Angel\Desktop\Code\RedRiver-Consulting-and-Software-AB-Test\booksBackend\obj\Debug\net9.0\booksBac.E1DC7C33.Up2Date

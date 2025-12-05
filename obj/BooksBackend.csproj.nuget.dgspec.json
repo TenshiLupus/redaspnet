@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\BooksBackend.csproj": {}
+    "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\booksBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\BooksBackend.csproj": {
+    "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\booksBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\BooksBackend.csproj",
-        "projectName": "BooksBackend",
-        "projectPath": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\BooksBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\booksBackend.csproj",
+        "projectName": "booksBackend",
+        "projectPath": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\booksBackend.csproj",
         "packagesPath": "C:\\Users\\Angel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Angel\\Desktop\\Code\\RedRiver-Consulting-and-Software-AB-Test\\booksBackend\\obj\\",
         "projectStyle": "PackageReference",
