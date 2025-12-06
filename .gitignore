@@ -1,0 +1,57 @@
+### .NET build artifacts
+bin/
+obj/
+out/
+[Bb]uild/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]*/
+[Aa][Rr][Mm]64/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+### Publish output
+publish/
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+### Visual Studio / Rider / other IDEs
+.vs/
+.idea/
+*.sln.iml
+*.DotSettings.user
+_ReSharper*/
+*_Resharper.*
+*.ncrunch*
+*.ncrunchsolution
+.vscode/
+
+### OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+### Logs
+*.log
+logs/
+Log/
+Logs/
+
+### SQLite / local databases
+*.db
+*.db-shm
+*.db-wal
+
+### EF Core tools cache
+migrations.sql
+
+### Node / front-end (if any sneaks in)
+node_modules/
+dist/

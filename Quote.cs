@@ -9,5 +9,7 @@ public class Quote
 
     public required string Author { get; set; }
 
+    public required bool isFavorite { get; set; }
+
 }
 
