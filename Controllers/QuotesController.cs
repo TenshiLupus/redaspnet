@@ -93,7 +93,7 @@ public class QuotesController : BaseController
         if (request.Author is not null)
             existingQuote.Author = request.Author;
 
-        existingQuote.isFavorite = request.isFavorite;
+
 
 
         try
